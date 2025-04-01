@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Robayo{% endblock %}
+
+{% block head_adds %}
+<link rel="shotcut icon" href="{{url_for('static',filename='/ml.ico')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/robayo.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="app">
+    <h1 id="title">Robayo</h1>
+</div>
+{% endblock %}
+
+{% block final_scripts %}
+<script src="{{url_for('static',filename='js/robayo.js')}}"></script>"
+{% endblock %}
