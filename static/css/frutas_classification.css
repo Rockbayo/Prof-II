@@ -1,0 +1,55 @@
+.header-frutas {
+    background: linear-gradient(135deg, #e74a3b 0%, #be2617 100%);
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-frutas {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.form-frutas .form-label {
+    font-weight: 600;
+    color: #5a5c69;
+}
+
+.btn-clasificar {
+    background-color: #4e73df;
+    transition: all 0.3s;
+}
+
+.btn-clasificar:hover {
+    background-color: #2e59d9;
+}
+
+.resultado-frutas {
+    border-left: 4px solid #1cc88a;
+}
+
+.probabilidad-frutas {
+    height: 25px;
+    border-radius: 12px;
+}
+
+.fruit-card {
+    transition: all 0.3s;
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.fruit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.color-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+}

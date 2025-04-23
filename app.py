@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 from python.sem4 import linear_regressions_grades
 from python.sem4 import rl_superficie_produccion
+from python.sem6 import logistic_regression_frutas
+
 
 app = Flask(__name__)
 app.config["DEBUG"] = True #Habilitar el modo de depuración para ver errores en la consola
@@ -12,6 +14,12 @@ def index():
 @app.route("/robayo")
 def robayo():
     return render_template("html/sem1/robayo.html") # Renderizar la plantilla robayo.html
+
+@app.route("/python")
+def ver_python():
+    with open("python/sem2/hola_mundo.py", "r", encoding="utf-8") as file:
+        hola = file.read()
+    return render_template("html/sem2/hola_mundo.html", hola=hola)
 
 @app.route("/linearRegression", methods=["GET", "POST"])
 def linear_regressions():
@@ -42,3 +50,31 @@ def rl_superficie():
     return render_template("html/sem4/rl_superficie_produccion.html",
                            result=predicted_result,
                            graph=graph_image)
+    
+    
+@app.route("/logistic_regression_frutas", methods=["GET", "POST"])
+def logistic_regression_view():
+    """
+    Página para clasificación de frutas basado en características físicas
+    """
+    resultado = None
+    datos_entrada = None
+    
+    if request.method == "POST":
+        try:
+            peso = float(request.form.get("peso"))
+            tamano = float(request.form.get("tamano"))
+            color_code = int(request.form.get("color_code"))
+            
+            resultado = logistic_regression_frutas.predecir_fruta(peso, tamano, color_code)
+            datos_entrada = {
+                'peso': peso,
+                'tamano': tamano,
+                'color_code': color_code
+            }
+        except (ValueError, TypeError):
+            resultado = {'error': 'Datos inválidos. Por favor ingrese valores numéricos correctos.'}
+    
+    return render_template("html/sem6/logistic_regression_frutas.html",
+                         resultado=resultado,
+                         datos_entrada=datos_entrada)

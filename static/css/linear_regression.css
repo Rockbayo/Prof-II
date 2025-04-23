@@ -1,0 +1,43 @@
+.header-regresion {
+    background: linear-gradient(135deg, #1cc88a 0%, #17a673 100%);
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-regresion {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.form-label-regresion {
+    font-weight: 600;
+    color: #5a5c69;
+}
+
+.input-group-regresion .form-control {
+    border-right: none;
+}
+
+.input-group-regresion .btn {
+    border-left: none;
+    background-color: #4e73df;
+    transition: all 0.3s;
+}
+
+.input-group-regresion .btn:hover {
+    background-color: #2e59d9;
+}
+
+.resultado-regresion {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.grafico-regresion {
+    border-radius: 0.5rem;
+    border: 1px solid #e3e6f0;
+    padding: 1rem;
+    background-color: white;
+}

@@ -1,0 +1,37 @@
+.header-hola-mundo {
+    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title-hola-mundo {
+    font-weight: 800;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle-hola-mundo {
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.card-hola-mundo {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-hola-mundo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+}
+
+.card-title-hola-mundo {
+    color: #2e59d9;
+    font-weight: 700;
+}
+
+.card-text-hola-mundo {
+    color: #5a5c69;
+}
