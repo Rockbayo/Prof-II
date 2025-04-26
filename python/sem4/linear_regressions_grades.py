@@ -20,16 +20,16 @@ x = df[["Study Hours"]]
 y = df["Final Grade"]
  
 # Crear y entrenar el modelo
-model = LinearRegression()
-model.fit(x, y)
+model = LinearRegression() # crear el modelo de regresión lineal
+model.fit(x, y) # entrenar el modelo con los datos
  
  
 def calculate_grade(hours):
     """
     Calcular la calificación de un estudiante basada en sus horas de estudio.
     """
-    result = model.predict([[hours]])
-    return result[0]
+    result = model.predict([[hours]]) # predecir la calificación
+    return result[0] # devolver la calificación predicha
  
  
 def generate_graph(user_hours):
