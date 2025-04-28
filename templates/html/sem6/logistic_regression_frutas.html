@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% block title %}Clasificación de Frutas{% endblock %}
+
+{% block head_adds %}
+<link rel="shortcut icon" href="{{url_for('static',filename='/ml.ico')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/frutas_classification.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+<style>
+    /* Estilos específicos inline para este template */
+    .color-rojo { background-color: #ff0000; }
+    .color-verde { background-color: #00ff00; }
+    .color-amarillo { background-color: #ffff00; }
+    .color-naranja { background-color: #ffa500; }
+    .color-morado { background-color: #800080; }
+    .color-rayado { background: repeating-linear-gradient(45deg, #ffffff, #ffffff 10px, #dddddd 10px, #dddddd 20px); }
+    .color-marron { background-color: #a52a2a; }
+    .color-blanco { background-color: #ffffff; border: 1px solid #ddd; }
+    .color-negro { background-color: #000000; }
+    .color-rosado { background-color: #ffc0cb; }
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="header-frutas text-center text-white">
+    <h1 class="title-hola-mundo">Clasificación de Frutas</h1>
+    <h2 class="subtitle-hola-mundo">Identificación de frutas por características físicas</h2>
+</header>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card card-frutas shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h2 class="text-center">Clasificación de Frutas</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('logistic_regression_view') }}" class="form-frutas">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="peso" class="form-label">Peso (gramos):</label>
+                                <input type="number" step="0.1" class="form-control" id="peso" name="peso" required min="1" max="10000">
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="tamano" class="form-label">Tamaño (cm):</label>
+                                <input type="number" step="0.1" class="form-control" id="tamano" name="tamano" required min="0.1" max="100">
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label for="color_code" class="form-label">Color:</label>
+                                <select class="form-select" id="color_code" name="color_code" required>
+                                    <option value="" selected disabled>Seleccione...</option>
+                                    <option value="1">Rojo</option>
+                                    <option value="2">Verde</option>
+                                    <option value="3">Amarillo</option>
+                                    <option value="4">Naranja</option>
+                                    <option value="5">Morado</option>
+                                    <option value="6">Rayado</option>
+                                    <option value="7">Marrón</option>
+                                    <option value="8">Blanco</option>
+                                    <option value="9">Negro</option>
+                                    <option value="10">Rosado</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-clasificar text-white w-100 py-2">
+                            <i class="bi bi-search"></i> Clasificar Fruta
+                        </button>
+                    </form>
+                    
+                    {% if resultado %}
+                        {% if resultado.error %}
+                        <div class="alert alert-danger mt-4">
+                            {{ resultado.error }}
+                        </div>
+                        {% else %}
+                        <div class="mt-4 p-3 resultado-frutas bg-light rounded">
+                            <h3 class="text-center mb-4">Resultado de Clasificación</h3>
+                            
+                            <div class="alert alert-success text-center">
+                                <h4>
+                                    <span class="badge bg-success rounded-pill me-2">
+                                        <i class="bi bi-check-circle"></i>
+                                    </span>
+                                    Fruta identificada: <strong>{{ resultado.fruta }}</strong>
+                                </h4>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5>Probabilidad de acierto: {{ resultado.probabilidad }}%</h5>
+                                <div class="progress probabilidad-frutas">
+                                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" 
+                                         role="progressbar" 
+                                         style="width: {{ resultado.probabilidad }}%" 
+                                         aria-valuenow="{{ resultado.probabilidad }}" 
+                                         aria-valuemin="0" 
+                                         aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h5 class="mt-4">Características ingresadas:</h5>
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Peso
+                                    <span class="badge bg-primary rounded-pill">{{ datos_entrada['peso'] }} gramos</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Tamaño
+                                    <span class="badge bg-primary rounded-pill">{{ datos_entrada['tamano'] }} cm</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Color
+                                    <span class="badge bg-primary rounded-pill">
+                                        <span class="color-indicator color-{{ resultado.color_nombre|lower }}"></span>
+                                        {{ resultado.color_nombre }}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="card mt-4 shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h4 class="text-center">Catálogo de Frutas</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row row-cols-2 row-cols-md-5 g-4">
+                        {% for fruta in [
+                            {'nombre': 'Manzana', 'peso': '120-180g', 'tamaño': '7-8cm', 'colores': 'Rojo/Verde'},
+                            {'nombre': 'Naranja', 'peso': '170-230g', 'tamaño': '7.5-8.5cm', 'colores': 'Naranja'},
+                            {'nombre': 'Uva', 'peso': '4-8g', 'tamaño': '1.4-1.8cm', 'colores': 'Morado/Verde'},
+                            {'nombre': 'Plátano', 'peso': '110-145g', 'tamaño': '2.9-3.4cm', 'colores': 'Amarillo'},
+                            {'nombre': 'Fresa', 'peso': '17-25g', 'tamaño': '1.8-2.2cm', 'colores': 'Rojo'},
+                            {'nombre': 'Mango', 'peso': '270-330g', 'tamaño': '8.7-9.3cm', 'colores': 'Naranja/Amarillo'},
+                            {'nombre': 'Pera', 'peso': '135-175g', 'tamaño': '5.9-6.4cm', 'colores': 'Verde/Amarillo'},
+                            {'nombre': 'Sandía', 'peso': '4300-5700g', 'tamaño': '23-27cm', 'colores': 'Verde/Rayado'},
+                            {'nombre': 'Melón', 'peso': '2700-3300g', 'tamaño': '18-22cm', 'colores': 'Amarillo/Verde'},
+                            {'nombre': 'Kiwi', 'peso': '90-125g', 'tamaño': '4.9-5.4cm', 'colores': 'Marrón/Verde'}
+                        ] %}
+                        <div class="col">
+                            <div class="card fruit-card h-100">
+                                <div class="card-body text-center">
+                                    <h5>{{ fruta.nombre }}</h5>
+                                    <small class="text-muted">Peso: {{ fruta.peso }}</small><br>
+                                    <small class="text-muted">Tamaño: {{ fruta.tamaño }}</small><br>
+                                    <small>Colores: {{ fruta.colores }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="text-center">Evaluación del Modelo KNN</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="text-center mb-3">Métricas de Evaluación</h5>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Métrica</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Accuracy</td>
+                                        <td>{{ metricas.accuracy }}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Precision</td>
+                                        <td>{{ metricas.precision }}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Recall</td>
+                                        <td>{{ metricas.recall }}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>F1 Score</td>
+                                        <td>{{ metricas.f1 }}%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-center mb-3">Matriz de Confusión</h5>
+                            <div class="text-center">
+                                <img src="{{ url_for('static', filename='images/confusion_matrix.png') }}" 
+                                     alt="Matriz de Confusión" 
+                                     class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                <h5 class="text-center">Interpretación de Resultados</h5>
+                                <p>El modelo KNN (K-Nearest Neighbors) muestra un excelente rendimiento en la clasificación de frutas basado en sus características físicas, con un accuracy general del {{ metricas.accuracy }}%.</p>
+                                <p>La matriz de confusión indica que el modelo es particularmente efectivo diferenciando entre frutas con características claramente distintas (como sandías vs uvas), mientras que puede presentar cierta confusión entre clases similares.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

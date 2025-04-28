@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Ing. Oscar Robayo Olaya - Machine Learning{% endblock %}
+
+{% block head_adds %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/presentacion.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="professional-container">
+    <div class="professional-card">
+        <img src="{{ url_for('static', filename='R.png') }}" alt="Logo Universidad" class="logo">
+        
+        <h1>Ingeniero. <span class="title-highlight">Oscar Robayo Olaya</span></h1>
+        
+        <div class="university-info">
+            <p>Universidad de Cundinamarca<br>
+            Sede Chía - Facultad de Ingeniería<br>
+            Programa de Ingeniería de Sistemas y Computación</p>
+        </div>
+        
+        <div class="course-info">
+            <p>Profundización II - Machine Learning</p>
+        </div>
+        
+                
+        <div class="signature">Oscar Robayo</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block final_scripts %}
+<script src="{{ url_for('static', filename='js/presentacion.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}RL_Produccion{% endblock %}
+
+{% block head_adds %}
+<link rel="shortcut icon" href="{{url_for('static',filename='/ml.ico')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/rl_produccion.css') }}">
+{% endblock %}
+
+{% block content %}
+<header class="header-produccion text-center text-white">
+    <h1 class="title-hola-mundo">Regresión Lineal</h1>
+    <h2 class="subtitle-hola-mundo">Producción en función de la superficie sembrada</h2>
+</header>
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card card-produccion p-4">
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="superficie" class="form-label form-label-produccion">Superficie sembrada</label>
+                    <div class="input-group">
+                        <input type="number" name="superficie" class="form-control input-produccion" required min="0" step="0.1"
+                            placeholder="Ingrese la superficie sembrada (en hectáreas)">
+                        <button type="submit" class="btn btn-produccion text-white">Predecir</button>
+                    </div>
+                </div>
+            </form>
+
+            {% if result is not none %}
+            <div class="alert alert-success text-center mt-3 resultado-produccion">
+                La producción predicha es: <span class="fs-4">{{ result }}</span> toneladas
+            </div>
+            {% endif %}
+
+            {% if graph %}
+            <div class="text-center mt-4 grafico-produccion">
+                <h5>Gráfico de Regresión Lineal</h5>
+                <img src="data:image/png;base64,{{ graph }}" class="img-fluid mt-3" alt="Gráfico de regresión lineal">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
