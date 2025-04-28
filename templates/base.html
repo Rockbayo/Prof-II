@@ -136,8 +136,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link {{ 'active' if request.path == url_for('robayo') }}" 
-                 href="{{url_for('robayo')}}">
+              <a class="nav-link {{ 'active' if request.path == url_for('presentacion') }}" 
+                 href="{{url_for('presentacion')}}">
                 <i class="bi bi-house-door me-1"></i> INGOR
               </a>
             </li>
@@ -146,6 +146,18 @@
                  href="{{url_for('ver_python')}}">
                 <i class="bi bi-code-slash me-1"></i> Hola Mundo
               </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ 'active' if request.path == url_for('iris_classification') }}" 
+                 href="{{url_for('iris_classification')}}">
+                <i class="bi bi-code-slash me-1"></i> Caso de Uso
+              </a> 
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ 'active' if request.path == url_for('mind_map') }}" 
+                 href="{{url_for('mind_map')}}">
+                <i class="bi bi-code-slash me-1"></i> Mapa Mental
+              </a>  
             </li>
             <li class="nav-item">
               <a class="nav-link {{ 'active' if request.path == url_for('linear_regressions') }}" 
@@ -192,7 +204,7 @@
       <div class="row">
         <div class="col-md-6">
           <h5 class="mb-3">Machine Learning App</h5>
-          <p class="mb-0">Sistema de demostración de algoritmos de ML Universidad de Cundinamarca</p>
+          <p class="mb-0">Demostración de algoritmos de ML, Universidad de Cundinamarca, Ingenieria de Sistemas y Computación</p>
         </div>
         <div class="col-md-6 mt-3 mt-md-0">
           <div class="h5">Enlaces útiles</div>
