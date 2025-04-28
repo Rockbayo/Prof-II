@@ -158,5 +158,65 @@
             </div>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="text-center">Evaluación del Modelo KNN</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="text-center mb-3">Métricas de Evaluación</h5>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Métrica</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Accuracy</td>
+                                        <td>{{ metricas.accuracy }}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Precision</td>
+                                        <td>{{ metricas.precision }}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Recall</td>
+                                        <td>{{ metricas.recall }}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>F1 Score</td>
+                                        <td>{{ metricas.f1 }}%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-center mb-3">Matriz de Confusión</h5>
+                            <div class="text-center">
+                                <img src="{{ url_for('static', filename='images/confusion_matrix.png') }}" 
+                                     alt="Matriz de Confusión" 
+                                     class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                <h5 class="text-center">Interpretación de Resultados</h5>
+                                <p>El modelo KNN (K-Nearest Neighbors) muestra un excelente rendimiento en la clasificación de frutas basado en sus características físicas, con un accuracy general del {{ metricas.accuracy }}%.</p>
+                                <p>La matriz de confusión indica que el modelo es particularmente efectivo diferenciando entre frutas con características claramente distintas (como sandías vs uvas), mientras que puede presentar cierta confusión entre clases similares.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
