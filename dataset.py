@@ -60,7 +60,7 @@ data = {
         5, 2, 5, 2, 5, 2, 5, 2, 5, 2,
         # Plátano (3) - Amarillo (3)
         3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-        # Fresa (4) - Rojo (1)
+        # Fresa (4) - Rojo (1)eUn data set 
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         # Mango (5) - Naranja (4), Amarillo (3)
         4, 3, 4, 3, 4, 3, 4, 3, 4, 3,

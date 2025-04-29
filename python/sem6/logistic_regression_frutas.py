@@ -13,7 +13,7 @@ import os
 def cargar_dataset(ruta_archivo='datasets/frutas_dataset.xlsx'):
     """
     Carga el dataset desde un archivo Excel.
-    
+    ¿
     Args:
         ruta_archivo (str): Ruta al archivo Excel
         
