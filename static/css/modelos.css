@@ -1,81 +1,51 @@
-/* Estilos para las páginas de modelos de Machine Learning */
-
+/* Estilos para las páginas de modelos de ML */
 .modelo-header {
     background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
     color: white;
-    padding: 3rem 0;
-    margin-bottom: 2.5rem;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
     border-radius: 0.5rem;
-    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
 }
 
 .modelo-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+    font-weight: 800;
 }
 
 .modelo-subtitle {
-    font-size: 1.2rem;
     font-weight: 300;
-    opacity: 0.85;
+    opacity: 0.8;
 }
 
-.card-modelos {
-    border: none;
-    border-radius: 0.5rem;
+.modelo-card {
     transition: transform 0.3s, box-shadow 0.3s;
     height: 100%;
+    border: none;
+    border-radius: 0.5rem;
     overflow: hidden;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
 }
 
-.card-modelos:hover {
+.modelo-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
 }
 
-.card-modelos .card-img-top {
+.modelo-img {
     height: 200px;
     object-fit: contain;
-    padding: 1.5rem;
+    padding: 1rem;
     background-color: #f8f9fa;
-    transition: transform 0.3s;
-}
-
-.card-modelos:hover .card-img-top {
-    transform: scale(1.05);
-}
-
-.card-modelos .card-body {
-    padding: 1.5rem;
-}
-
-.card-modelos .card-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #4e73df;
-}
-
-.card-modelos .card-text {
-    color: #5a5c69;
-    margin-bottom: 1.5rem;
 }
 
 .modelo-image {
     max-width: 100%;
     max-height: 400px;
+    object-fit: contain;
     display: block;
     margin: 0 auto 2rem auto;
+    background-color: #f8f9fa;
     padding: 1rem;
     border-radius: 0.5rem;
-    background-color: #f8f9fa;
-    box-shadow: 0 0.15rem 1rem rgba(58, 59, 69, 0.1);
-    transition: transform 0.3s;
-}
-
-.modelo-image:hover {
-    transform: scale(1.02);
 }
 
 .modelo-description {
@@ -86,71 +56,43 @@
     margin-bottom: 2rem;
 }
 
-.modelo-description h2 {
-    color: #4e73df;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-    border-bottom: 2px solid #e3e6f0;
-    padding-bottom: 0.75rem;
-}
-
-.modelo-description p {
-    color: #5a5c69;
-    line-height: 1.7;
-    margin-bottom: 1rem;
-}
-
 .modelo-fuente {
     background-color: #f8f9fa;
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 0.5rem;
     margin-bottom: 2rem;
-    border-left: 4px solid #4e73df;
-}
-
-.modelo-fuente h3 {
-    color: #4e73df;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.modelo-fuente a {
-    color: #4e73df;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-
-.modelo-fuente a:hover {
-    color: #224abe;
-    text-decoration: underline;
 }
 
 .modelo-navigation {
     display: flex;
     justify-content: space-between;
-    margin-top: 2.5rem;
+    margin-top: 2rem;
 }
 
-.modelo-navigation .btn {
-    padding: 0.75rem 1.5rem;
-    font-weight: 600;
-    border-radius: 0.35rem;
-    transition: all 0.2s;
+/* Estilos para tarjetas de modelos en listado */
+.card-modelos {
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
 }
 
-.modelo-navigation .btn:hover {
-    transform: translateY(-3px);
+.card-modelos:hover {
+    transform: translateY(-10px);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: contain;
+    padding: 1rem;
+    background-color: #f8f9fa;
 }
 
 /* Animaciones */
 .animate-fade {
-    animation: fadeIn 0.6s ease-out forwards;
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }

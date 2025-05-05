@@ -6,30 +6,14 @@ from python.sem2.iris_model import create_iris_classifier
 from python.sem4.linear_regressions_grades import calculate_grade, generate_graph
 from python.sem4.rl_superficie_produccion import calcular_produccion, generate_graph as generate_graph_superficie
 from python.sem6.logistic_regression_frutas import predecir_fruta, metricas
-
-# Importar componentes para la base de datos
-from models_db import db, ModeloML, inicializar_modelos
-
+from python.sem7.models_ml import get_all_models, get_model_by_id, get_model_by_name
 # Importar el blueprint de modelos
-from python.sem7.routes_db_modelos import modelos_bp
+from python.sem7.routes_modelos import modelos_bp
 
 app = Flask(__name__)
 
-# Configuración de la base de datos
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///modelos_ml.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# Inicializar la base de datos
-db.init_app(app)
-
 # Registrar el blueprint de modelos
 app.register_blueprint(modelos_bp)
-
-# Crear tablas e inicializar datos - solo se ejecutará una vez
-@app.before_first_request
-def create_tables():
-    db.create_all()
-    inicializar_modelos()
 
 # Rutas existentes
 @app.route('/')

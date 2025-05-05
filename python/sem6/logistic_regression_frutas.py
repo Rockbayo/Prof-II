@@ -13,17 +13,31 @@ import os
 def cargar_dataset(ruta_archivo='datasets/frutas_dataset.xlsx'):
     """
     Carga el dataset desde un archivo Excel.
-    ¿
+    
     Args:
         ruta_archivo (str): Ruta al archivo Excel
         
     Returns:
         pandas.DataFrame: DataFrame con los datos cargados
     """
+    # Verificar si existe el directorio
+    os.makedirs(os.path.dirname(ruta_archivo), exist_ok=True)
+    
     # Verificar si el archivo existe
     if not os.path.exists(ruta_archivo):
         print(f"¡El archivo {ruta_archivo} no existe!")
-        print("Ejecute primero el script generate_dataset.py para generar el dataset.")
+        # Intentar buscar en ubicaciones alternativas
+        alternative_paths = [
+            'datasets/frutas_dataset.xlsx',
+            '../datasets/frutas_dataset.xlsx',
+            '../../datasets/frutas_dataset.xlsx',
+        ]
+        for alt_path in alternative_paths:
+            if os.path.exists(alt_path):
+                print(f"Usando archivo alternativo: {alt_path}")
+                return pd.read_excel(alt_path)
+        
+        print("No se encontró el dataset en ninguna ubicación. Ejecute primero el script dataset.py para generar el dataset.")
         return None
     
     # Cargar el archivo Excel
@@ -40,7 +54,7 @@ df = cargar_dataset()
 
 # Si no se pudo cargar el dataset, terminar la ejecución
 if df is None:
-    raise Exception("No se pudo cargar el dataset. Ejecute primero el script generate_dataset.py")
+    raise Exception("No se pudo cargar el dataset. Ejecute primero el script dataset.py")
 
 # Preprocesamiento
 X = df[['peso', 'tamano', 'color_code']]
@@ -109,6 +123,7 @@ def predecir_fruta(peso, tamano, color_code):
         return "Datos inválidos", 0
     
     # Preprocesar entrada
+   # Preprocesar entrada
     datos_entrada = np.array([[peso, tamano, color_code]])
     datos_escalados = scaler.transform(datos_entrada)
     

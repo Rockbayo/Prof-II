@@ -1,6 +1,6 @@
 """
-Módulo para gestionar la información de modelos de ML.
-Usa un enfoque de diccionarios en memoria en lugar de SQLAlchemy.
+Módulo para gestionar información sobre modelos de Machine Learning de clasificación.
+Esta implementación simplificada usa diccionarios en memoria en lugar de una base de datos.
 """
 
 # Lista de modelos de ML para clasificación
