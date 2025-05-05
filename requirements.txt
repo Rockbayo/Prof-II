@@ -3,3 +3,15 @@ Flask-SQLAlchemy==2.5.1
 Werkzeug==2.0.1
 setuptools>=59.0.0
 pip>=21.0.0
+flask
+matplotlib
+numpy
+pandas
+scikit-learn
+gunicorn
+Flask-MySQLdb
+python-dotenv
+Flask-Migrate
+flask-sqlalchemy
+openpyxl
+seaborn
