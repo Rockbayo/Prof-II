@@ -1,8 +1,45 @@
 {% extends "base.html" %}
-{% block title %}Robayo{% endblock %}
+{% block title %}ML Dashboard{% endblock %}
 
-<body>
-    <h1>si entro</h1>
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1>Bienvenido al Dashboard de Machine Learning</h1>
+            <p class="lead">Explora los diferentes modelos y aplicaciones de Machine Learning</p>
+        </div>
+    </div>
     
-</body>
-</html>
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Clasificación Iris</h5>
+                    <p class="card-text">Clasificación de especies de flores Iris basada en sus medidas.</p>
+                    <a href="{{ url_for('iris_classification') }}" class="btn btn-primary">Explorar</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Regresión Lineal</h5>
+                    <p class="card-text">Predecir calificaciones basadas en horas de estudio.</p>
+                    <a href="{{ url_for('linear_regressions') }}" class="btn btn-primary">Explorar</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Modelos de Clasificación</h5>
+                    <p class="card-text">Explora diferentes algoritmos de clasificación supervisada.</p>
+                    <a href="{{ url_for('modelos.listado_modelos') }}" class="btn btn-primary">Explorar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

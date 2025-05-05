@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 # Asegurarse de que existe el directorio para los datasets
-os.makedirs(r'C:\Users\ingor\OneDrive - UNIVERSIDAD DE CUNDINAMARCA\Documentos\GitHub\prySolo\datasets', exist_ok=True)
+os.makedirs('datasets', exist_ok=True)
 
 # Datos de entrenamiento para 10 frutas
 data = {
@@ -123,6 +123,6 @@ nombre_colores = {
 df['nombre_color'] = df['color_code'].map(nombre_colores)
 
 # Guardar el DataFrame como archivo Excel
-df.to_excel(r'C:\Users\ingor\OneDrive - UNIVERSIDAD DE CUNDINAMARCA\Documentos\GitHub\prySolo\datasets\frutas_dataset.xlsx', index=False)
+df.to_excel('datasets/frutas_dataset.xlsx', index=False)
 
-print(r"Dataset generado y guardado en 'C:\Users\ingor\OneDrive - UNIVERSIDAD DE CUNDINAMARCA\Documentos\GitHub\prySolo\datasets\frutas_dataset.xlsx'")
+print("Dataset generado y guardado en 'datasets/frutas_dataset.xlsx'")

@@ -3,41 +3,7 @@
 
 {% block head_adds %}
 <link rel="shortcut icon" href="{{url_for('static',filename='/ml.ico')}}">
-<style>
-    .card-modelos {
-        transition: transform 0.3s, box-shadow 0.3s;
-        height: 100%;
-    }
-    
-    .card-modelos:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    }
-    
-    .card-img-top {
-        height: 200px;
-        object-fit: contain;
-        padding: 1rem;
-        background-color: #f8f9fa;
-    }
-    
-    .modelo-header {
-        background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
-        color: white;
-        padding: 2rem 0;
-        margin-bottom: 2rem;
-        border-radius: 0.5rem;
-    }
-    
-    .modelo-title {
-        font-weight: 800;
-    }
-    
-    .modelo-subtitle {
-        font-weight: 300;
-        opacity: 0.8;
-    }
-</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modelos.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -47,11 +13,22 @@
 </header>
 
 <div class="container">
+    <div class="row mb-4">
+        <div class="col-lg-8 mx-auto">
+            <div class="alert alert-info">
+                <h4 class="alert-heading">Modelos de Clasificación</h4>
+                <p>La clasificación es una técnica de aprendizaje supervisado donde el modelo predice etiquetas discretas. Estos modelos aprenden patrones de datos etiquetados y luego clasifican nuevos datos en categorías específicas.</p>
+                <hr>
+                <p class="mb-0">Explore los diferentes algoritmos de clasificación y sus características a continuación.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for modelo in modelos %}
         <div class="col animate-fade">
             <div class="card card-modelos">
-                <img src="{{ url_for('static', filename='images/models/' + modelo.imagen.split('/')[-1]) }}" class="card-img-top" alt="{{ modelo.nombre }}">
+                <img src="{{ url_for('static', filename=modelo.imagen.split('static/')[-1]) }}" class="card-img-top" alt="{{ modelo.nombre }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ modelo.nombre }}</h5>
                     <p class="card-text">{{ modelo.descripcion|truncate(100) }}</p>
