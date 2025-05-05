@@ -1,3 +1,6 @@
+"""
+Definición de modelos para la base de datos de modelos de Machine Learning
+"""
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -5,8 +8,10 @@ db = SQLAlchemy()
 
 class ModeloML(db.Model):
     """Modelo para almacenar información sobre modelos de Machine Learning de clasificación"""
+    __tablename__ = 'modelos_ml'
+    
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100), nullable=False)
+    nombre = db.Column(db.String(100), nullable=False, unique=True)
     descripcion = db.Column(db.Text, nullable=False)
     fuente = db.Column(db.String(255), nullable=False)
     imagen = db.Column(db.String(255), nullable=False)
@@ -14,9 +19,19 @@ class ModeloML(db.Model):
     
     def __repr__(self):
         return f'<ModeloML {self.nombre}>'
+    
+    def to_dict(self):
+        """Convierte el modelo a un diccionario para facilitar su uso en templates"""
+        return {
+            'id': self.id,
+            'nombre': self.nombre,
+            'descripcion': self.descripcion,
+            'fuente': self.fuente,
+            'imagen': self.imagen
+        }
 
-# Función para inicializar la base de datos con valores predeterminados
 def inicializar_modelos():
+    """Inicializa la base de datos con la información de los modelos de ML"""
     modelos = [
         {
             'nombre': 'Regresión Logística',
@@ -82,9 +97,11 @@ def inicializar_modelos():
     
     # Verificar si ya existen modelos
     if ModeloML.query.first() is None:
-        for modelo in modelos:
-            nuevo_modelo = ModeloML(**modelo)
-            db.session.add(nuevo_modelo)
+        for modelo_data in modelos:
+            modelo = ModeloML(**modelo_data)
+            db.session.add(modelo)
         
         db.session.commit()
         print("Base de datos inicializada con modelos de ML")
+    else:
+        print("La base de datos ya contiene modelos")

@@ -1,6 +1,6 @@
 """
-Módulo para gestionar información sobre modelos de Machine Learning de clasificación.
-Esta implementación simplificada usa diccionarios en memoria en lugar de una base de datos.
+Módulo para gestionar la información de modelos de ML.
+Usa un enfoque de diccionarios en memoria en lugar de SQLAlchemy.
 """
 
 # Lista de modelos de ML para clasificación
@@ -13,7 +13,7 @@ MODELOS_ML = [
         Es especialmente útil para problemas de clasificación binaria, aunque puede extenderse a problemas multiclase.
         El modelo busca encontrar los pesos óptimos que, cuando se combinan con las características de entrada, maximizan la probabilidad de la clase correcta.''',
         'fuente': 'https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression',
-        'imagen': 'logistic_regression.png'
+        'imagen': 'static/images/models/logistic_regression.png'
     },
     {
         'id': 2,
@@ -22,7 +22,7 @@ MODELOS_ML = [
         Funciona encontrando los K puntos más cercanos al nuevo dato y asignando la clase más común entre estos vecinos.
         Es simple pero efectivo, especialmente cuando la frontera de decisión es irregular. Su rendimiento depende crucialmente de la elección del número de vecinos (K) y la métrica de distancia utilizada.''',
         'fuente': 'https://scikit-learn.org/stable/modules/neighbors.html',
-        'imagen': 'knn.png'
+        'imagen': 'static/images/models/knn.png'
     },
     {
         'id': 3,
@@ -31,7 +31,7 @@ MODELOS_ML = [
         Funcionan como un diagrama de flujo, donde cada nodo interno representa una "prueba" sobre un atributo, cada rama representa el resultado de esa prueba,
         y cada nodo hoja representa una etiqueta de clase. Son intuitivos y fáciles de interpretar visualmente, pero pueden tender al sobreajuste si no se regulan adecuadamente.''',
         'fuente': 'https://scikit-learn.org/stable/modules/tree.html',
-        'imagen': 'decision_tree.png'
+        'imagen': 'static/images/models/decision_tree.png'
     },
     {
         'id': 4,
@@ -40,7 +40,7 @@ MODELOS_ML = [
         Cada árbol se entrena con una muestra aleatoria (con reemplazo) del conjunto de datos original y utiliza un subconjunto aleatorio de características al dividir cada nodo.
         Esta aleatorización ayuda a reducir el sobreajuste y mejora la generalización, haciendo de Random Forest un algoritmo muy potente y ampliamente utilizado.''',
         'fuente': 'https://scikit-learn.org/stable/modules/ensemble.html#forests-of-randomized-trees',
-        'imagen': 'random_forest.png'
+        'imagen': 'static/images/models/random_forest.png'
     },
     {
         'id': 5,
@@ -50,7 +50,7 @@ MODELOS_ML = [
         y utilizar el "truco del kernel" para transformar datos no linealmente separables a un espacio donde sean separables linealmente.
         Es potente para conjuntos de datos pequeños y medianos con características claras.''',
         'fuente': 'https://scikit-learn.org/stable/modules/svm.html',
-        'imagen': 'svm.png'
+        'imagen': 'static/images/models/svm.png'
     },
     {
         'id': 6,
@@ -60,7 +60,7 @@ MODELOS_ML = [
         son implementaciones optimizadas que ofrecen alto rendimiento y han dominado muchas competiciones de machine learning en los últimos años.
         Son especialmente efectivos cuando se calibran adecuadamente sus hiperparámetros.''',
         'fuente': 'https://scikit-learn.org/stable/modules/ensemble.html#gradient-boosting',
-        'imagen': 'gradient_boosting.png'
+        'imagen': 'static/images/models/gradient_boosting.png'
     },
     {
         'id': 7,
@@ -70,7 +70,7 @@ MODELOS_ML = [
         especialmente en tareas como clasificación de texto y filtrado de spam. Son computacionalmente eficientes y requieren relativamente pocos datos de entrenamiento.
         Las variantes más comunes son Gaussiano, Multinomial y Bernoulli, cada uno con diferentes suposiciones sobre la distribución de los datos.''',
         'fuente': 'https://scikit-learn.org/stable/modules/naive_bayes.html',
-        'imagen': 'naive_bayes.png'
+        'imagen': 'static/images/models/naive_bayes.png'
     }
 ]
 
