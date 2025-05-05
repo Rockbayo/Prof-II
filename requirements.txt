@@ -1,3 +1,8 @@
+Flask==2.0.1
+Flask-SQLAlchemy==2.5.1
+Werkzeug==2.0.1
+setuptools>=59.0.0
+pip>=21.0.0
 flask
 matplotlib
 numpy
