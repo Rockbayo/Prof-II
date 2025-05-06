@@ -101,9 +101,3 @@ git push origin A7_ModelosSupervisadosClasificacion
 
 3. Realiza el merge a la rama principal cuando todo esté listo.
 
-## Documentación
-Para el informe final, asegúrate de incluir:
-- Análisis de los modelos de clasificación
-- Capturas de pantalla del menú y las páginas
-- Capturas de GitHub mostrando el flujo de trabajo
-- Enlaces a la aplicación y al video explicativo
